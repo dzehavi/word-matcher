@@ -18,15 +18,16 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+        // start the aggregator thread
         Aggregator aggregator = new Aggregator();
         Thread aggregatorThread = new Thread(aggregator);
         aggregatorThread.start();
 
-        //Scanner inputScanner = new Scanner(Paths.get("src/test/resources/test.txt"));
         Scanner inputScanner = new Scanner(new URL("http://norvig.com/big.txt").openStream());
 
-        Generator generator = new Generator(inputScanner);
-        generator.generate();
+        // read the file and generate lines
+        Reader reader = new Reader(inputScanner);
+        reader.read();
 
         // Aggregator will first empty the responses, and then terminate
         aggregator.setWaitAndTerminate();

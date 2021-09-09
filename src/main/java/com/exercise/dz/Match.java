@@ -13,6 +13,6 @@ public class Match {
 
     @Override
     public String toString() {
-        return "[lineOffset=" + lineOffset + ". charOffset=" + charOffset + "]";
+        return "[lineOffset=" + lineOffset + ", charOffset=" + charOffset + "]";
     }
 }

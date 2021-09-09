@@ -6,22 +6,21 @@ import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class Generator {
+public class Reader {
     public static final int CHUNK_SIZE = 1000;
     private final Scanner inputScanner;
     ThreadPoolExecutor threadPool = (ThreadPoolExecutor) Executors.newFixedThreadPool(10);
 
-    public Generator(Scanner inputScanner) {
+    public Reader(Scanner inputScanner) {
         this.inputScanner = inputScanner;
     }
 
-    public void generate() {
+    public void read() {
         int lineNum = 0;
         List<MatchRequest> chunk = new ArrayList<>(CHUNK_SIZE);
 
         while (inputScanner.hasNext()) {
-           lineNum++;
-           chunk.add(new MatchRequest(inputScanner.nextLine(), lineNum));
+           chunk.add(new MatchRequest(inputScanner.nextLine(), lineNum++));
             if (lineNum % CHUNK_SIZE == 0) {
                 // process chunk
                 for (MatchRequest matchRequest : chunk) {
